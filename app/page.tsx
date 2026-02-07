@@ -1,6 +1,6 @@
 import { QuizContainer } from "@/components/quiz/quiz-container"
 
-export default function Page() {
+export default function Home() {
   return (
     <main>
       <QuizContainer />
