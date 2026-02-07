@@ -44,9 +44,9 @@ export function StepLoadingSocial({ step, onNext }: StepLoadingSocialProps) {
   }, [onNext])
 
   return (
-    <div className="flex flex-col flex-1 animate-in fade-in duration-500">
+    <div className="flex flex-col flex-1 animate-in fade-in duration-500 overflow-hidden">
       {/* Loading header */}
-      <div className="px-6 pt-2">
+      <div className="px-6 pt-2 flex-shrink-0">
         <div className="flex items-baseline justify-between mb-2">
           <span className="text-[#1a1a1a] font-semibold text-sm">
             {step.loadingMessage || "Carregando seu plano exclusivo"}
@@ -65,19 +65,17 @@ export function StepLoadingSocial({ step, onNext }: StepLoadingSocialProps) {
         </div>
       </div>
 
-      {/* Social proof image */}
+      {/* Social proof image - covers nearly full remaining screen */}
       {step.socialImage && (
-        <div className="px-0 mt-4 flex-1">
-          <div className="relative w-full h-full min-h-[450px]">
-            <Image
-              src={step.socialImage || "/placeholder.svg"}
-              alt="Depoimento de aluna - Prova social"
-              fill
-              className="object-contain object-top"
-              sizes="(max-width: 448px) 100vw, 448px"
-              priority
-            />
-          </div>
+        <div className="flex-1 mt-3 relative min-h-0">
+          <Image
+            src={step.socialImage || "/placeholder.svg"}
+            alt="Depoimento de aluna - Prova social"
+            fill
+            className="object-cover object-top"
+            sizes="(max-width: 448px) 100vw, 448px"
+            priority
+          />
         </div>
       )}
     </div>
