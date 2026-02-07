@@ -176,4 +176,9 @@ export const quizSteps: QuizStep[] = [
     loadingMessage: "Carregando seu plano exclusivo",
     socialImage: "/images/prova-social.png",
   },
+  // ETAPA 13 - Final Result
+  {
+    id: 13,
+    type: "result",
+  },
 ]
