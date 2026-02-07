@@ -6,6 +6,7 @@ import { ProgressBar } from "./progress-bar"
 import { StepIntro } from "./step-intro"
 import { StepQuestion } from "./step-question"
 import { StepResult } from "./step-result"
+import { StepLoading } from "./step-loading"
 import { ArrowLeft } from "lucide-react"
 
 export function QuizContainer() {
@@ -25,7 +26,7 @@ export function QuizContainer() {
     }
   }, [currentStep])
 
-  const showBackArrow = currentStep > 0 && step.type !== "result"
+  const showBackArrow = currentStep > 0 && step.type !== "result" && step.type !== "loading"
 
   return (
     <div className="min-h-dvh flex flex-col bg-[#ffffff] max-w-md mx-auto relative">
@@ -81,6 +82,9 @@ export function QuizContainer() {
         {step.type === "intro" && <StepIntro step={step} onNext={handleNext} />}
         {step.type === "question" && (
           <StepQuestion step={step} onNext={handleNext} />
+        )}
+        {step.type === "loading" && (
+          <StepLoading step={step} onNext={handleNext} />
         )}
         {step.type === "result" && <StepResult step={step} />}
       </div>

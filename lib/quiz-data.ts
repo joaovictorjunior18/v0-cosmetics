@@ -6,7 +6,7 @@ export interface QuizOption {
 
 export interface QuizStep {
   id: number
-  type: "intro" | "question" | "result"
+  type: "intro" | "question" | "loading" | "result"
   /** Use **bold** syntax for bold parts in the title */
   title?: string
   subtitle?: string
@@ -18,6 +18,8 @@ export interface QuizStep {
   autoAdvance?: boolean
   /** "radio" shows empty circles, "letter" shows A/B/C labels */
   optionStyle?: "radio" | "letter"
+  /** Message shown on loading screen */
+  loadingMessage?: string
 }
 
 export const quizSteps: QuizStep[] = [
@@ -122,17 +124,9 @@ export const quizSteps: QuizStep[] = [
   },
   {
     id: 9,
-    type: "question",
-    title: "Quanto **tempo** você pode dedicar por dia?",
-    autoAdvance: false,
-    optionStyle: "letter",
-    buttonText: "Continuar",
-    options: [
-      { emoji: "\u{23F0}", text: "Menos de 1 hora", label: "A" },
-      { emoji: "\u{1F552}", text: "De 1 a 3 horas", label: "B" },
-      { emoji: "\u{1F55B}", text: "De 3 a 6 horas", label: "C" },
-      { emoji: "\u{1F4AA}", text: "Tempo integral", label: "D" },
-    ],
+    type: "loading",
+    loadingMessage:
+      "Estou analisando suas respostas e gerando um planejamento estratégico!",
   },
   {
     id: 10,
