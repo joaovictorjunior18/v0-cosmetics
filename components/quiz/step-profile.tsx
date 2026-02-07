@@ -212,7 +212,7 @@ export function StepProfile({ step, onNext, onBack }: StepProfileProps) {
 
       {/* Footer */}
       <footer className="py-4 text-center">
-        <p className="text-xs text-[#b0a898]">
+        <p className="text-xs text-black">
           {"© 2026 - Criado via inlead.digital  |  Central de anúncios"}
         </p>
       </footer>
