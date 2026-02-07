@@ -3,13 +3,15 @@
 import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import type { QuizStep } from "@/lib/quiz-data"
+import { ArrowLeft } from "lucide-react"
 
 interface StepLoadingSocialProps {
   step: QuizStep
   onNext: () => void
+  onBack?: () => void
 }
 
-export function StepLoadingSocial({ step, onNext }: StepLoadingSocialProps) {
+export function StepLoadingSocial({ step, onNext, onBack }: StepLoadingSocialProps) {
   const [progress, setProgress] = useState(0)
   const hasAdvanced = useRef(false)
 
@@ -45,6 +47,21 @@ export function StepLoadingSocial({ step, onNext }: StepLoadingSocialProps) {
 
   return (
     <div className="flex flex-col flex-1 animate-in fade-in duration-500 overflow-hidden">
+      {/* Back button area */}
+      {onBack && (
+        <div className="px-6 pt-4 flex-shrink-0">
+          <button
+            type="button"
+            onClick={onBack}
+            className="flex items-center gap-2 text-[#1a1a1a] hover:text-[#8b2e2e] transition-colors"
+            aria-label="Voltar"
+          >
+            <ArrowLeft className="w-5 h-5" strokeWidth={2} />
+            <span className="text-sm font-medium">Voltar</span>
+          </button>
+        </div>
+      )}
+
       {/* Loading header */}
       <div className="px-6 pt-2 flex-shrink-0">
         <div className="flex items-baseline justify-between mb-2">

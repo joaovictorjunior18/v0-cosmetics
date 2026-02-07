@@ -2,13 +2,15 @@
 
 import { useState, useEffect } from "react"
 import type { QuizStep } from "@/lib/quiz-data"
+import { ArrowLeft } from "lucide-react"
 
 interface StepProfileProps {
   step: QuizStep
   onNext: () => void
+  onBack?: () => void
 }
 
-export function StepProfile({ step, onNext }: StepProfileProps) {
+export function StepProfile({ step, onNext, onBack }: StepProfileProps) {
   const [animateChart, setAnimateChart] = useState(false)
   const [showDots, setShowDots] = useState(false)
   const [showLabel, setShowLabel] = useState(false)
@@ -26,6 +28,21 @@ export function StepProfile({ step, onNext }: StepProfileProps) {
 
   return (
     <div className="flex flex-col flex-1 animate-in fade-in duration-500">
+      {/* Back button area */}
+      {onBack && (
+        <div className="px-6 pt-4">
+          <button
+            type="button"
+            onClick={onBack}
+            className="flex items-center gap-2 text-[#1a1a1a] hover:text-[#8b2e2e] transition-colors"
+            aria-label="Voltar"
+          >
+            <ArrowLeft className="w-5 h-5" strokeWidth={2} />
+            <span className="text-sm font-medium">Voltar</span>
+          </button>
+        </div>
+      )}
+
       {/* Title section */}
       <div className="px-6 pt-4">
         <h1 className="font-serif text-[#1a1a1a] text-4xl font-bold leading-tight">

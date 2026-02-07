@@ -2,10 +2,12 @@
 
 import { useState, useCallback } from "react"
 import type { QuizStep } from "@/lib/quiz-data"
+import { ArrowLeft } from "lucide-react"
 
 interface StepQuestionProps {
   step: QuizStep
   onNext: () => void
+  onBack?: () => void
 }
 
 /**
@@ -25,7 +27,7 @@ function renderBoldText(text: string) {
   })
 }
 
-export function StepQuestion({ step, onNext }: StepQuestionProps) {
+export function StepQuestion({ step, onNext, onBack }: StepQuestionProps) {
   const [selected, setSelected] = useState<number | null>(null)
 
   const handleSelect = useCallback(
@@ -44,6 +46,21 @@ export function StepQuestion({ step, onNext }: StepQuestionProps) {
 
   return (
     <div className="flex flex-col flex-1 animate-in fade-in slide-in-from-right-4 duration-500">
+      {/* Back button area */}
+      {onBack && (
+        <div className="px-6 pt-4">
+          <button
+            type="button"
+            onClick={onBack}
+            className="flex items-center gap-2 text-[#1a1a1a] hover:text-[#8b2e2e] transition-colors"
+            aria-label="Voltar"
+          >
+            <ArrowLeft className="w-5 h-5" strokeWidth={2} />
+            <span className="text-sm font-medium">Voltar</span>
+          </button>
+        </div>
+      )}
+
       {/* Spacer to push content down like in screenshots */}
       <div className="flex-1 min-h-[80px]" />
 

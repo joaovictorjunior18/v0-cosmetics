@@ -1,14 +1,31 @@
 "use client"
 
 import type { QuizStep } from "@/lib/quiz-data"
+import { ArrowLeft } from "lucide-react"
 
 interface StepResultProps {
   step: QuizStep
+  onBack?: () => void
 }
 
-export function StepResult({ step }: StepResultProps) {
+export function StepResult({ step, onBack }: StepResultProps) {
   return (
     <div className="flex flex-col items-center flex-1 animate-in fade-in zoom-in-95 duration-700">
+      {/* Back button area */}
+      {onBack && (
+        <div className="w-full px-6 pt-4">
+          <button
+            type="button"
+            onClick={onBack}
+            className="flex items-center gap-2 text-[#1a1a1a] hover:text-[#8b2e2e] transition-colors"
+            aria-label="Voltar"
+          >
+            <ArrowLeft className="w-5 h-5" strokeWidth={2} />
+            <span className="text-sm font-medium">Voltar</span>
+          </button>
+        </div>
+      )}
+
       {/* Celebration area */}
       <div className="w-full bg-[#faf6f0] flex flex-col items-center justify-center py-16 px-6 min-h-[280px] gap-4">
         <div className="w-20 h-20 rounded-full bg-[#f0c932] flex items-center justify-center">

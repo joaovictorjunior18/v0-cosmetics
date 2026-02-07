@@ -2,13 +2,15 @@
 
 import { useState, useEffect, useRef } from "react"
 import type { QuizStep } from "@/lib/quiz-data"
+import { ArrowLeft } from "lucide-react"
 
 interface StepLoadingProps {
   step: QuizStep
   onNext: () => void
+  onBack?: () => void
 }
 
-export function StepLoading({ step, onNext }: StepLoadingProps) {
+export function StepLoading({ step, onNext, onBack }: StepLoadingProps) {
   const [progress, setProgress] = useState(0)
   const hasAdvanced = useRef(false)
 
@@ -47,6 +49,21 @@ export function StepLoading({ step, onNext }: StepLoadingProps) {
 
   return (
     <div className="flex flex-col flex-1 animate-in fade-in duration-500">
+      {/* Back button area */}
+      {onBack && (
+        <div className="px-6 pt-4">
+          <button
+            type="button"
+            onClick={onBack}
+            className="flex items-center gap-2 text-[#1a1a1a] hover:text-[#8b2e2e] transition-colors"
+            aria-label="Voltar"
+          >
+            <ArrowLeft className="w-5 h-5" strokeWidth={2} />
+            <span className="text-sm font-medium">Voltar</span>
+          </button>
+        </div>
+      )}
+
       {/* Spacer to push content to vertical center-ish */}
       <div className="flex-1 min-h-[120px]" />
 

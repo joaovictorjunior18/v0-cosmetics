@@ -85,20 +85,20 @@ export function QuizContainer() {
 
       {/* Step Content */}
       <div className="flex flex-col flex-1" key={currentStep}>
-        {step.type === "intro" && <StepIntro step={step} onNext={handleNext} />}
+        {step.type === "intro" && <StepIntro step={step} onNext={handleNext} onBack={handleBack} />}
         {step.type === "question" && (
-          <StepQuestion step={step} onNext={handleNext} />
+          <StepQuestion step={step} onNext={handleNext} onBack={handleBack} />
         )}
         {step.type === "loading" && (
-          <StepLoading step={step} onNext={handleNext} />
+          <StepLoading step={step} onNext={handleNext} onBack={handleBack} />
         )}
         {step.type === "profile" && (
-          <StepProfile step={step} onNext={handleNext} />
+          <StepProfile step={step} onNext={handleNext} onBack={handleBack} />
         )}
         {step.type === "loading-social" && (
-          <StepLoadingSocial step={step} onNext={handleNext} />
+          <StepLoadingSocial step={step} onNext={handleNext} onBack={handleBack} />
         )}
-        {step.type === "result" && <StepResult step={step} />}
+        {step.type === "result" && <StepResult step={step} onBack={handleBack} />}
       </div>
     </div>
   )
