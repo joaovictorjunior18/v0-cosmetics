@@ -6,7 +6,7 @@ import Image from "next/image"
 import { Play } from "lucide-react"
 
 export function StepSales() {
-  const ctaUrl = "https://example.com/checkout"
+  const ctaUrl = "https://pay.cakto.com.br/3fykqvm_757556"
 
   return (
     <div className="flex flex-col flex-1 animate-in fade-in duration-500 overflow-y-auto">
