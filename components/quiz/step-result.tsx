@@ -31,9 +31,10 @@ export function StepResult({ step, onBack }: StepResultProps) {
         {/* Imagem 01 - Comparison Section */}
         <div className="w-full px-4 mb-6">
           <img
-            src="/images/imagem-2001.png"
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/imagem%2001-otN5gI93EmhoRVyn3gNPSmQN0b2Tkv.png"
             alt="Seu Plano está pronto"
-            className="w-full rounded-lg"
+            className="w-full h-auto rounded-lg"
+            style={{ width: "100%", height: "auto" }}
           />
         </div>
 
@@ -49,9 +50,10 @@ export function StepResult({ step, onBack }: StepResultProps) {
         {/* Imagem 02 - Offer Section */}
         <div className="w-full px-4 mb-6">
           <img
-            src="/images/imagem-2002.png"
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/imagem%2002-MsMpaF14TTIJSrPrmn4QCKQBopMHcA.png"
             alt="Oferta por tempo limitado"
-            className="w-full rounded-lg"
+            className="w-full h-auto rounded-lg"
+            style={{ width: "100%", height: "auto" }}
           />
         </div>
 
