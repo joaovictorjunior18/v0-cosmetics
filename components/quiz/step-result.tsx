@@ -2,6 +2,7 @@
 
 import type { QuizStep } from "@/lib/quiz-data"
 import { ArrowLeft } from "lucide-react"
+import Script from "next/script"
 
 interface StepResultProps {
   step: QuizStep
@@ -38,13 +39,28 @@ export function StepResult({ step, onBack }: StepResultProps) {
           />
         </div>
 
-        {/* VSL Video Placeholder */}
+        {/* Vimeo Video */}
         <div className="w-full px-4 mb-6">
-          <div className="w-full aspect-video bg-black rounded-lg flex items-center justify-center overflow-hidden">
-            <div className="text-center text-white">
-              <p className="font-semibold">VÍDEO VSL</p>
-            </div>
+          <div
+            style={{ padding: "176.47% 0 0 0", position: "relative" }}
+            className="rounded-lg overflow-hidden"
+          >
+            <iframe
+              src="https://player.vimeo.com/video/1162735381?badge=0&autopause=0&player_id=0&app_id=58479"
+              frameBorder="0"
+              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+              }}
+              title="Cósmeticos"
+            />
           </div>
+          <Script src="https://player.vimeo.com/api/player.js" strategy="lazyOnload" />
         </div>
 
         {/* Imagem 02 - Offer Section */}
