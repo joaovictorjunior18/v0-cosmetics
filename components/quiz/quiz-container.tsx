@@ -1,27 +1,49 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useCallback } from "react"
 import { quizSteps } from "@/lib/quiz-data"
 import { ProgressBar } from "./progress-bar"
 import { StepIntro } from "./step-intro"
 import { StepQuestion } from "./step-question"
 import { StepResult } from "./step-result"
+import { ArrowLeft } from "lucide-react"
 
 export function QuizContainer() {
   const [currentStep, setCurrentStep] = useState(0)
 
   const step = quizSteps[currentStep]
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     if (currentStep < quizSteps.length - 1) {
       setCurrentStep((prev) => prev + 1)
     }
-  }
+  }, [currentStep])
+
+  const handleBack = useCallback(() => {
+    if (currentStep > 0) {
+      setCurrentStep((prev) => prev - 1)
+    }
+  }, [currentStep])
+
+  const showBackArrow = currentStep > 0 && step.type !== "result"
 
   return (
-    <div className="min-h-dvh flex flex-col bg-background max-w-md mx-auto relative">
-      {/* Header / Logo */}
-      <header className="flex items-center justify-center py-4 px-6">
+    <div className="min-h-dvh flex flex-col bg-[#ffffff] max-w-md mx-auto relative">
+      {/* Header */}
+      <header className="relative flex items-center justify-center py-4 px-6">
+        {/* Back arrow */}
+        {showBackArrow && (
+          <button
+            type="button"
+            onClick={handleBack}
+            className="absolute left-4 top-1/2 -translate-y-1/2 p-1 text-[#1a1a1a] hover:text-[#8b2e2e] transition-colors"
+            aria-label="Voltar"
+          >
+            <ArrowLeft className="w-5 h-5" strokeWidth={2} />
+          </button>
+        )}
+
+        {/* Logo */}
         <div className="flex flex-col items-center">
           <svg
             width="28"

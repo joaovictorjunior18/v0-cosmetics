@@ -1,12 +1,23 @@
+export interface QuizOption {
+  emoji: string
+  text: string
+  label?: string
+}
+
 export interface QuizStep {
   id: number
   type: "intro" | "question" | "result"
+  /** Use **bold** syntax for bold parts in the title */
   title?: string
   subtitle?: string
   description?: string
   highlightText?: string
-  buttonText: string
-  options?: string[]
+  buttonText?: string
+  options?: QuizOption[]
+  /** If true, selecting an option auto-advances (no button needed) */
+  autoAdvance?: boolean
+  /** "radio" shows empty circles, "letter" shows A/B/C labels */
+  optionStyle?: "radio" | "letter"
 }
 
 export const quizSteps: QuizStep[] = [
@@ -23,122 +34,132 @@ export const quizSteps: QuizStep[] = [
   {
     id: 2,
     type: "question",
-    title: "Qual é a sua situação atual?",
+    title: "Você sabe como comprar maquiagem **direto da fábrica**?",
+    autoAdvance: true,
+    optionStyle: "radio",
     options: [
-      "Estou empregada, mas quero uma renda extra",
-      "Estou desempregada e preciso de renda",
-      "Já trabalho com revenda, mas quero crescer",
-      "Tenho um negócio, mas quero diversificar",
+      { emoji: "\u{1F92F}", text: "Não, e tá difícil de conseguir" },
+      { emoji: "\u{1F601}", text: "Compro na revista" },
+      { emoji: "\u{1F61F}", text: "Só acho maquiagem cara" },
     ],
-    buttonText: "Próxima",
   },
   {
     id: 3,
     type: "question",
-    title: "Quanto você pode investir inicialmente?",
+    title: "Os seus fornecedores **tem limite** de compra mínima?",
+    autoAdvance: true,
+    optionStyle: "radio",
     options: [
-      "Menos de R$200",
-      "Entre R$200 e R$500",
-      "Entre R$500 e R$1.000",
-      "Mais de R$1.000",
+      { emoji: "\u{1F92F}", text: "SIM!" },
+      { emoji: "\u{1F600}", text: "NÃO!" },
     ],
-    buttonText: "Próxima",
   },
   {
     id: 4,
     type: "question",
-    title: "Você já tem experiência com vendas?",
+    title: "O que mais te **impede de começar** a empreender com cosméticos?",
+    autoAdvance: false,
+    optionStyle: "letter",
+    buttonText: "Continuar",
     options: [
-      "Nunca vendi nada",
-      "Já vendi informalmente para amigas",
-      "Tenho experiência com vendas",
-      "Já trabalho com cosméticos",
+      { emoji: "\u{1F4B0}", text: "Falta de capital", label: "A" },
+      { emoji: "\u{1F913}", text: "Falta de conhecimento", label: "B" },
+      { emoji: "\u{1F61F}", text: "Falta de tempo", label: "C" },
     ],
-    buttonText: "Próxima",
   },
   {
     id: 5,
     type: "question",
-    title: "O que mais te atrai nos cosméticos?",
+    title: "Qual é a sua **situação atual**?",
+    autoAdvance: true,
+    optionStyle: "radio",
     options: [
-      "O lucro alto dos produtos",
-      "Poder trabalhar de casa",
-      "Ajudar outras mulheres a se sentirem bonitas",
-      "Construir meu próprio negócio",
+      { emoji: "\u{1F4BC}", text: "Estou empregada, mas quero uma renda extra" },
+      { emoji: "\u{1F614}", text: "Estou desempregada e preciso de renda" },
+      { emoji: "\u{1F4C8}", text: "Já trabalho com revenda, mas quero crescer" },
+      { emoji: "\u{1F3AF}", text: "Tenho um negócio, mas quero diversificar" },
     ],
-    buttonText: "Próxima",
   },
   {
     id: 6,
     type: "question",
-    title: "Quanto tempo você pode dedicar por dia?",
+    title: "Quanto você pode **investir inicialmente**?",
+    autoAdvance: false,
+    optionStyle: "letter",
+    buttonText: "Continuar",
     options: [
-      "Menos de 1 hora",
-      "De 1 a 3 horas",
-      "De 3 a 6 horas",
-      "Tempo integral",
+      { emoji: "\u{1F4B8}", text: "Menos de R$200", label: "A" },
+      { emoji: "\u{1F4B5}", text: "Entre R$200 e R$500", label: "B" },
+      { emoji: "\u{1F4B0}", text: "Entre R$500 e R$1.000", label: "C" },
+      { emoji: "\u{1F911}", text: "Mais de R$1.000", label: "D" },
     ],
-    buttonText: "Próxima",
   },
   {
     id: 7,
     type: "question",
-    title: "Você usa redes sociais para vender?",
+    title: "Você já tem **experiência com vendas**?",
+    autoAdvance: true,
+    optionStyle: "radio",
     options: [
-      "Não uso redes sociais",
-      "Uso, mas não para vender",
-      "Já publico alguns produtos",
-      "Tenho uma estratégia de vendas online",
+      { emoji: "\u{1F645}", text: "Nunca vendi nada" },
+      { emoji: "\u{1F937}", text: "Já vendi informalmente para amigas" },
+      { emoji: "\u{1F4AA}", text: "Tenho experiência com vendas" },
+      { emoji: "\u{1F484}", text: "Já trabalho com cosméticos" },
     ],
-    buttonText: "Próxima",
   },
   {
     id: 8,
     type: "question",
-    title: "Qual é o seu maior desafio hoje?",
+    title: "O que mais te **atrai nos cosméticos**?",
+    autoAdvance: true,
+    optionStyle: "radio",
     options: [
-      "Não sei por onde começar",
-      "Não consigo atrair clientes",
-      "Não sei precificar os produtos",
-      "Não consigo manter a consistência",
+      { emoji: "\u{1F4B0}", text: "O lucro alto dos produtos" },
+      { emoji: "\u{1F3E0}", text: "Poder trabalhar de casa" },
+      { emoji: "\u{1F495}", text: "Ajudar outras mulheres a se sentirem bonitas" },
+      { emoji: "\u{1F680}", text: "Construir meu próprio negócio" },
     ],
-    buttonText: "Próxima",
   },
   {
     id: 9,
     type: "question",
-    title: "Qual é o seu objetivo em 6 meses?",
+    title: "Quanto **tempo** você pode dedicar por dia?",
+    autoAdvance: false,
+    optionStyle: "letter",
+    buttonText: "Continuar",
     options: [
-      "Ter uma renda extra de R$1.000/mês",
-      "Ganhar R$3.000 a R$5.000/mês",
-      "Largar meu emprego e viver de cosméticos",
-      "Abrir minha própria loja",
+      { emoji: "\u{23F0}", text: "Menos de 1 hora", label: "A" },
+      { emoji: "\u{1F552}", text: "De 1 a 3 horas", label: "B" },
+      { emoji: "\u{1F55B}", text: "De 3 a 6 horas", label: "C" },
+      { emoji: "\u{1F4AA}", text: "Tempo integral", label: "D" },
     ],
-    buttonText: "Próxima",
   },
   {
     id: 10,
     type: "question",
-    title: "Você prefere vender de que forma?",
+    title: "Você usa **redes sociais** para vender?",
+    autoAdvance: true,
+    optionStyle: "radio",
     options: [
-      "Porta a porta / presencialmente",
-      "Pelas redes sociais",
-      "Pelo WhatsApp",
-      "Um mix de tudo",
+      { emoji: "\u{274C}", text: "Não uso redes sociais" },
+      { emoji: "\u{1F4F1}", text: "Uso, mas não para vender" },
+      { emoji: "\u{1F4E2}", text: "Já publico alguns produtos" },
+      { emoji: "\u{1F4CA}", text: "Tenho uma estratégia de vendas online" },
     ],
-    buttonText: "Próxima",
   },
   {
     id: 11,
     type: "question",
-    title: "O que te faria começar hoje?",
+    title: "Qual é o seu **objetivo em 6 meses**?",
+    autoAdvance: false,
+    optionStyle: "letter",
+    buttonText: "Continuar",
     options: [
-      "Um passo a passo claro e simples",
-      "Saber que posso começar com pouco dinheiro",
-      "Ver que outras mulheres conseguiram",
-      "Ter suporte e acompanhamento",
+      { emoji: "\u{1F4B5}", text: "Ter uma renda extra de R$1.000/mês", label: "A" },
+      { emoji: "\u{1F4B0}", text: "Ganhar R$3.000 a R$5.000/mês", label: "B" },
+      { emoji: "\u{1F680}", text: "Largar meu emprego e viver de cosméticos", label: "C" },
+      { emoji: "\u{1F3EA}", text: "Abrir minha própria loja", label: "D" },
     ],
-    buttonText: "Próxima",
   },
   {
     id: 12,

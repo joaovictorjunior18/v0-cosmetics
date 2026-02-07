@@ -21,30 +21,35 @@ export function StepIntro({ step, onNext }: StepIntroProps) {
 
       {/* Content area */}
       <div className="flex flex-col items-center px-6 py-8 text-center gap-4 flex-1">
-        <h2 className="text-foreground font-bold text-lg">
-          {step.subtitle}
-        </h2>
-        <p className="text-muted-foreground text-base leading-relaxed max-w-sm">
+        <h2 className="text-[#1a1a1a] font-bold text-lg">{step.subtitle}</h2>
+        <p className="text-[#6b6560] text-base leading-relaxed max-w-sm">
           {step.description}{" "}
-          <span className="font-bold text-foreground underline decoration-[#f0c932] decoration-2 underline-offset-2">
+          <span className="font-bold text-[#1a1a1a] underline decoration-[#f0c932] decoration-2 underline-offset-2">
             {step.highlightText}
           </span>
         </p>
-        <p className="text-muted-foreground text-sm">
+        <p className="text-[#6b6560] text-sm">
           {"Conteúdo prático, passo a passo."}
         </p>
       </div>
 
       {/* Button */}
-      <div className="w-full px-6 pb-8">
+      <div className="w-full px-6 pb-4">
         <button
           type="button"
           onClick={onNext}
-          className="w-full py-4 rounded-full bg-[#f0c932] text-[#1a1a1a] font-semibold text-lg hover:bg-[#e6be25] active:scale-[0.98] transition-all duration-200"
+          className="w-full py-4 rounded-full bg-[#f0c932] text-[#8b5e1a] font-semibold text-lg hover:bg-[#e6be25] active:scale-[0.98] transition-all duration-200"
         >
           {step.buttonText}
         </button>
       </div>
+
+      {/* Footer */}
+      <footer className="py-4 text-center">
+        <p className="text-xs text-[#b0a898]">
+          {"© 2026 - Criado via inlead.digital  |  Central de anúncios"}
+        </p>
+      </footer>
     </div>
   )
 }

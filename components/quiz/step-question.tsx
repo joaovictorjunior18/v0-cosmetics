@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useCallback } from "react"
 import type { QuizStep } from "@/lib/quiz-data"
 
 interface StepQuestionProps {
@@ -8,53 +8,130 @@ interface StepQuestionProps {
   onNext: () => void
 }
 
+/**
+ * Renders text with **bold** markdown syntax into React elements.
+ * E.g. "Os seus fornecedores **tem limite** de compra?" =>
+ *   ["Os seus fornecedores ", <strong>tem limite</strong>, " de compra?"]
+ */
+function renderBoldText(text: string) {
+  const parts = text.split(/\*\*(.*?)\*\*/g)
+  return parts.map((part, i) => {
+    if (i % 2 === 1) {
+      return (
+        <strong key={i} className="font-bold">
+          {part}
+        </strong>
+      )
+    }
+    return part
+  })
+}
+
 export function StepQuestion({ step, onNext }: StepQuestionProps) {
   const [selected, setSelected] = useState<number | null>(null)
 
+  const handleSelect = useCallback(
+    (index: number) => {
+      setSelected(index)
+      if (step.autoAdvance) {
+        setTimeout(() => {
+          onNext()
+        }, 400)
+      }
+    },
+    [step.autoAdvance, onNext],
+  )
+
+  const isLetter = step.optionStyle === "letter"
+
   return (
     <div className="flex flex-col flex-1 animate-in fade-in slide-in-from-right-4 duration-500">
+      {/* Spacer to push content down like in screenshots */}
+      <div className="flex-1 min-h-[80px]" />
+
       {/* Question title */}
-      <div className="px-6 pt-8 pb-6">
-        <h2 className="text-foreground font-bold text-xl text-center text-balance">
-          {step.title}
+      <div className="px-8 pb-6">
+        <h2 className="text-[#1a1a1a] font-semibold text-lg text-center text-balance leading-snug">
+          {step.title ? renderBoldText(step.title) : null}
         </h2>
       </div>
 
       {/* Options */}
-      <div className="flex flex-col gap-3 px-6 flex-1">
+      <div className="flex flex-col gap-3 px-6">
         {step.options?.map((option, index) => (
           <button
-            key={option}
+            key={option.text}
             type="button"
-            onClick={() => setSelected(index)}
-            className={`w-full text-left px-5 py-4 rounded-xl border-2 transition-all duration-200 text-sm font-medium ${
+            onClick={() => handleSelect(index)}
+            className={`w-full text-left flex items-center gap-3 px-4 py-4 rounded-xl border transition-all duration-200 text-[15px] ${
               selected === index
-                ? "border-[#8b2e2e] bg-[#faf6f0] text-[#8b2e2e]"
-                : "border-border bg-background text-foreground hover:border-[#d4a574]"
+                ? "border-[#f0c932] bg-[#fdf8e8]"
+                : "border-[#e8e2d8] bg-[#faf8f5] hover:border-[#d4c9b8]"
             }`}
           >
-            {option}
+            {/* Left indicator: radio circle or letter badge */}
+            {isLetter ? (
+              <span
+                className={`flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold transition-colors duration-200 ${
+                  selected === index
+                    ? "bg-[#f0c932] text-[#1a1a1a]"
+                    : "bg-[#f0ece4] text-[#8a8070]"
+                }`}
+              >
+                {option.label}
+              </span>
+            ) : (
+              <span
+                className={`flex-shrink-0 w-7 h-7 rounded-full border-2 flex items-center justify-center transition-colors duration-200 ${
+                  selected === index
+                    ? "border-[#f0c932] bg-[#f0c932]"
+                    : "border-[#d4cfc6] bg-transparent"
+                }`}
+              >
+                {selected === index && (
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#fff]" />
+                )}
+              </span>
+            )}
+
+            {/* Emoji */}
+            <span className="text-lg flex-shrink-0">{option.emoji}</span>
+
+            {/* Text */}
+            <span className="text-[#1a1a1a] font-medium">{option.text}</span>
           </button>
         ))}
       </div>
 
-      {/* Button */}
-      <div className="w-full px-6 py-8">
-        <button
-          type="button"
-          onClick={() => {
-            if (selected !== null) onNext()
-          }}
-          disabled={selected === null}
-          className={`w-full py-4 rounded-full font-semibold text-lg transition-all duration-200 ${
-            selected !== null
-              ? "bg-[#f0c932] text-[#1a1a1a] hover:bg-[#e6be25] active:scale-[0.98]"
-              : "bg-[#f5f0e8] text-[#b0a898] cursor-not-allowed"
-          }`}
-        >
-          {step.buttonText}
-        </button>
-      </div>
+      {/* Spacer */}
+      <div className="flex-1 min-h-[40px]" />
+
+      {/* Continuar button (only for non-autoAdvance steps) */}
+      {!step.autoAdvance && step.buttonText && (
+        <div className="w-full px-6 pb-6">
+          <button
+            type="button"
+            onClick={() => {
+              if (selected !== null) onNext()
+            }}
+            disabled={selected === null}
+            className={`w-full py-4 rounded-full font-semibold text-lg transition-all duration-200 ${
+              selected !== null
+                ? "bg-[#f0c932] text-[#8b5e1a] hover:bg-[#e6be25] active:scale-[0.98]"
+                : "bg-[#f5f0e8] text-[#b0a898] cursor-not-allowed"
+            }`}
+          >
+            {step.buttonText}
+          </button>
+        </div>
+      )}
+
+      {/* Footer */}
+      <footer className="py-4 text-center">
+        <p className="text-xs text-[#b0a898]">
+          {"© 2026 - Criado via inlead.digital  |  Central de anúncios"}
+        </p>
+      </footer>
     </div>
   )
 }

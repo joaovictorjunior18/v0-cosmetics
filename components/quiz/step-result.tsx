@@ -33,16 +33,14 @@ export function StepResult({ step }: StepResultProps) {
 
       {/* Content */}
       <div className="flex flex-col items-center px-6 py-8 text-center gap-4 flex-1">
-        <h2 className="text-foreground font-bold text-lg">
-          {step.subtitle}
-        </h2>
-        <p className="text-muted-foreground text-base leading-relaxed max-w-sm">
+        <h2 className="text-[#1a1a1a] font-bold text-lg">{step.subtitle}</h2>
+        <p className="text-[#6b6560] text-base leading-relaxed max-w-sm">
           {step.description}
         </p>
       </div>
 
       {/* Button */}
-      <div className="w-full px-6 pb-8">
+      <div className="w-full px-6 pb-4">
         <button
           type="button"
           onClick={() => {
@@ -53,6 +51,13 @@ export function StepResult({ step }: StepResultProps) {
           {step.buttonText}
         </button>
       </div>
+
+      {/* Footer */}
+      <footer className="py-4 text-center">
+        <p className="text-xs text-[#b0a898]">
+          {"© 2026 - Criado via inlead.digital  |  Central de anúncios"}
+        </p>
+      </footer>
     </div>
   )
 }
