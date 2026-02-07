@@ -65,17 +65,20 @@ export function StepLoadingSocial({ step, onNext }: StepLoadingSocialProps) {
         </div>
       </div>
 
-      {/* Social proof image - covers nearly full remaining screen */}
+      {/* Social proof image - scrollable */}
       {step.socialImage && (
-        <div className="flex-1 mt-3 relative min-h-0">
-          <Image
-            src={step.socialImage || "/placeholder.svg"}
-            alt="Depoimento de aluna - Prova social"
-            fill
-            className="object-cover object-top"
-            sizes="(max-width: 448px) 100vw, 448px"
-            priority
-          />
+        <div className="flex-1 mt-3 overflow-y-auto min-h-0">
+          <div className="relative w-full">
+            <Image
+              src={step.socialImage || "/placeholder.svg"}
+              alt="Depoimento de aluna - Prova social"
+              width={448}
+              height={900}
+              className="w-full h-auto object-contain"
+              sizes="(max-width: 448px) 100vw, 448px"
+              priority
+            />
+          </div>
         </div>
       )}
     </div>
