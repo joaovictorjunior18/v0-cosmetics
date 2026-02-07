@@ -6,10 +6,12 @@ export interface QuizOption {
 
 export interface QuizStep {
   id: number
-  type: "intro" | "question" | "loading" | "result"
+  type: "intro" | "question" | "loading" | "loading-social" | "profile" | "result"
   /** Use **bold** syntax for bold parts in the title */
   title?: string
   subtitle?: string
+  /** Subtitle color: "golden" (default) or "red" */
+  subtitleColor?: "golden" | "red"
   description?: string
   highlightText?: string
   buttonText?: string
@@ -20,9 +22,12 @@ export interface QuizStep {
   optionStyle?: "radio" | "letter"
   /** Message shown on loading screen */
   loadingMessage?: string
+  /** Image path for social proof */
+  socialImage?: string
 }
 
 export const quizSteps: QuizStep[] = [
+  // ETAPA 01 - Intro
   {
     id: 1,
     type: "intro",
@@ -33,6 +38,7 @@ export const quizSteps: QuizStep[] = [
     highlightText: "R$10 mil/mês.",
     buttonText: "Estou pronta",
   },
+  // ETAPA 02 - Question (radio, auto-advance, 3 options)
   {
     id: 2,
     type: "question",
@@ -45,6 +51,7 @@ export const quizSteps: QuizStep[] = [
       { emoji: "\u{1F61F}", text: "Só acho maquiagem cara" },
     ],
   },
+  // ETAPA 03 - Question (radio, auto-advance, 2 options)
   {
     id: 3,
     type: "question",
@@ -56,6 +63,7 @@ export const quizSteps: QuizStep[] = [
       { emoji: "\u{1F600}", text: "NÃO!" },
     ],
   },
+  // ETAPA 04 - Question (letter labels, button, 3 options)
   {
     id: 4,
     type: "question",
@@ -69,99 +77,103 @@ export const quizSteps: QuizStep[] = [
       { emoji: "\u{1F61F}", text: "Falta de tempo", label: "C" },
     ],
   },
+  // ETAPA 05 - Question (radio, auto-advance, 2 options, RED subtitle)
   {
     id: 5,
     type: "question",
-    title: "Qual é a sua **situação atual**?",
+    title:
+      "Você sente que está perdendo oportunidades por não iniciar seu negócio?",
+    subtitle: "Tempo é dinheiro.",
+    subtitleColor: "red",
     autoAdvance: true,
     optionStyle: "radio",
     options: [
-      { emoji: "\u{1F4BC}", text: "Estou empregada, mas quero uma renda extra" },
-      { emoji: "\u{1F614}", text: "Estou desempregada e preciso de renda" },
-      { emoji: "\u{1F4C8}", text: "Já trabalho com revenda, mas quero crescer" },
-      { emoji: "\u{1F3AF}", text: "Tenho um negócio, mas quero diversificar" },
+      { emoji: "\u{1F625}", text: "Sim, mas não sei onde começar" },
+      { emoji: "\u{1F525}", text: "Talvez" },
     ],
   },
+  // ETAPA 06 - Question (radio, auto-advance, 3 options, golden subtitle)
   {
     id: 6,
     type: "question",
-    title: "Quanto você pode **investir inicialmente**?",
-    autoAdvance: false,
-    optionStyle: "letter",
-    buttonText: "Continuar",
+    title: "Quanto você gostaria de ganhar revendendo Cosméticos?",
+    subtitle: "Seja sincera, é muito importante.",
+    subtitleColor: "golden",
+    autoAdvance: true,
+    optionStyle: "radio",
     options: [
-      { emoji: "\u{1F4B8}", text: "Menos de R$200", label: "A" },
-      { emoji: "\u{1F4B5}", text: "Entre R$200 e R$500", label: "B" },
-      { emoji: "\u{1F4B0}", text: "Entre R$500 e R$1.000", label: "C" },
-      { emoji: "\u{1F911}", text: "Mais de R$1.000", label: "D" },
+      { emoji: "\u{1F48E}", text: "Acima de R$ 3.000 por mês." },
+      { emoji: "\u{1F929}", text: "Entre R$ 5.000 e R$ 8.000 por mês." },
+      { emoji: "\u{1F4B0}", text: "Acima de R$ 10.000 por mês." },
     ],
   },
+  // ETAPA 07 - Question (radio, auto-advance, 3 options, golden subtitle)
   {
     id: 7,
     type: "question",
-    title: "Você já tem **experiência com vendas**?",
+    title: "Em 2 meses, como você gostaria de estar?",
+    subtitle: "Seja sincera, é muito importante.",
+    subtitleColor: "golden",
     autoAdvance: true,
     optionStyle: "radio",
     options: [
-      { emoji: "\u{1F645}", text: "Nunca vendi nada" },
-      { emoji: "\u{1F937}", text: "Já vendi informalmente para amigas" },
-      { emoji: "\u{1F4AA}", text: "Tenho experiência com vendas" },
-      { emoji: "\u{1F484}", text: "Já trabalho com cosméticos" },
+      {
+        emoji: "\u{1F929}",
+        text: "Sendo dona da minha própria loja de maquiagem.",
+      },
+      {
+        emoji: "\u{1F63B}",
+        text: "Aumentando minha renda significativamente",
+      },
+      { emoji: "\u{1F615}", text: "Ainda não pensei sobre isso..." },
     ],
   },
+  // ETAPA 08 - Question (radio, auto-advance, 2 options, no subtitle)
   {
     id: 8,
     type: "question",
-    title: "O que mais te **atrai nos cosméticos**?",
+    title:
+      "Concorda que com Fornecedores e orientação certa, é possível ter resultados mais rápidos?",
     autoAdvance: true,
     optionStyle: "radio",
     options: [
-      { emoji: "\u{1F4B0}", text: "O lucro alto dos produtos" },
-      { emoji: "\u{1F3E0}", text: "Poder trabalhar de casa" },
-      { emoji: "\u{1F495}", text: "Ajudar outras mulheres a se sentirem bonitas" },
-      { emoji: "\u{1F680}", text: "Construir meu próprio negócio" },
+      { emoji: "\u{1F929}", text: "Sim, com certeza!" },
+      { emoji: "\u{1F914}", text: "Não tenho certeza" },
     ],
   },
+  // ETAPA 09 - Loading/Analyzing
   {
     id: 9,
     type: "loading",
     loadingMessage:
       "Estou analisando suas respostas e gerando um planejamento estratégico!",
   },
+  // ETAPA 10 - Profile Analysis Result
   {
     id: 10,
-    type: "question",
-    title: "Você usa **redes sociais** para vender?",
-    autoAdvance: true,
-    optionStyle: "radio",
-    options: [
-      { emoji: "\u{274C}", text: "Não uso redes sociais" },
-      { emoji: "\u{1F4F1}", text: "Uso, mas não para vender" },
-      { emoji: "\u{1F4E2}", text: "Já publico alguns produtos" },
-      { emoji: "\u{1F4CA}", text: "Tenho uma estratégia de vendas online" },
-    ],
+    type: "profile",
+    buttonText: "Continuar",
   },
+  // ETAPA 11 - Question (radio, auto-advance, 2 options, golden subtitle, bold in options)
   {
     id: 11,
     type: "question",
-    title: "Qual é o seu **objetivo em 6 meses**?",
-    autoAdvance: false,
-    optionStyle: "letter",
-    buttonText: "Continuar",
+    title:
+      "Você se compromete a seguir o plano que vamos desenvolver para você?",
+    subtitle: "Seja sincera...",
+    subtitleColor: "golden",
+    autoAdvance: true,
+    optionStyle: "radio",
     options: [
-      { emoji: "\u{1F4B5}", text: "Ter uma renda extra de R$1.000/mês", label: "A" },
-      { emoji: "\u{1F4B0}", text: "Ganhar R$3.000 a R$5.000/mês", label: "B" },
-      { emoji: "\u{1F680}", text: "Largar meu emprego e viver de cosméticos", label: "C" },
-      { emoji: "\u{1F3EA}", text: "Abrir minha própria loja", label: "D" },
+      { emoji: "\u{1F929}", text: "**Sim,** me comprometo." },
+      { emoji: "\u{1F914}", text: "**Tenho duvidas** se vou conseguir." },
     ],
   },
+  // ETAPA 12 - Loading with Social Proof
   {
     id: 12,
-    type: "result",
-    title: "Seu resultado está pronto!",
-    subtitle: "Parabéns por dar o primeiro passo!",
-    description:
-      "Com base nas suas respostas, montei um plano personalizado para você começar a viver de cosméticos. Clique abaixo para acessar o conteúdo exclusivo.",
-    buttonText: "Ver meu plano",
+    type: "loading-social",
+    loadingMessage: "Carregando seu plano exclusivo",
+    socialImage: "/images/prova-social.png",
   },
 ]

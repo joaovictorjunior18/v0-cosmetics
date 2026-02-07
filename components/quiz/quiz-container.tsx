@@ -7,6 +7,8 @@ import { StepIntro } from "./step-intro"
 import { StepQuestion } from "./step-question"
 import { StepResult } from "./step-result"
 import { StepLoading } from "./step-loading"
+import { StepProfile } from "./step-profile"
+import { StepLoadingSocial } from "./step-loading-social"
 import { ArrowLeft } from "lucide-react"
 
 export function QuizContainer() {
@@ -26,7 +28,11 @@ export function QuizContainer() {
     }
   }, [currentStep])
 
-  const showBackArrow = currentStep > 0 && step.type !== "result" && step.type !== "loading"
+  const showBackArrow =
+    currentStep > 0 &&
+    step.type !== "result" &&
+    step.type !== "loading" &&
+    step.type !== "loading-social"
 
   return (
     <div className="min-h-dvh flex flex-col bg-[#ffffff] max-w-md mx-auto relative">
@@ -85,6 +91,12 @@ export function QuizContainer() {
         )}
         {step.type === "loading" && (
           <StepLoading step={step} onNext={handleNext} />
+        )}
+        {step.type === "profile" && (
+          <StepProfile step={step} onNext={handleNext} />
+        )}
+        {step.type === "loading-social" && (
+          <StepLoadingSocial step={step} onNext={handleNext} />
         )}
         {step.type === "result" && <StepResult step={step} />}
       </div>

@@ -10,8 +10,6 @@ interface StepQuestionProps {
 
 /**
  * Renders text with **bold** markdown syntax into React elements.
- * E.g. "Os seus fornecedores **tem limite** de compra?" =>
- *   ["Os seus fornecedores ", <strong>tem limite</strong>, " de compra?"]
  */
 function renderBoldText(text: string) {
   const parts = text.split(/\*\*(.*?)\*\*/g)
@@ -50,11 +48,29 @@ export function StepQuestion({ step, onNext }: StepQuestionProps) {
       <div className="flex-1 min-h-[80px]" />
 
       {/* Question title */}
-      <div className="px-8 pb-6">
-        <h2 className="text-[#1a1a1a] font-semibold text-lg text-center text-balance leading-snug">
+      <div className="px-8 pb-2">
+        <h2 className="text-[#1a1a1a] font-bold text-lg text-center text-balance leading-snug">
           {step.title ? renderBoldText(step.title) : null}
         </h2>
       </div>
+
+      {/* Subtitle if present */}
+      {step.subtitle && (
+        <div className="px-8 pb-6">
+          <p
+            className={`text-center text-base italic ${
+              step.subtitleColor === "red"
+                ? "text-[#c94040]"
+                : "text-[#c4956a]"
+            }`}
+          >
+            {step.subtitle}
+          </p>
+        </div>
+      )}
+
+      {/* If no subtitle, just add spacing */}
+      {!step.subtitle && <div className="pb-4" />}
 
       {/* Options */}
       <div className="flex flex-col gap-3 px-6">
@@ -97,8 +113,10 @@ export function StepQuestion({ step, onNext }: StepQuestionProps) {
             {/* Emoji */}
             <span className="text-lg flex-shrink-0">{option.emoji}</span>
 
-            {/* Text */}
-            <span className="text-[#1a1a1a] font-medium">{option.text}</span>
+            {/* Text - supports **bold** syntax */}
+            <span className="text-[#1a1a1a] font-medium">
+              {renderBoldText(option.text)}
+            </span>
           </button>
         ))}
       </div>
