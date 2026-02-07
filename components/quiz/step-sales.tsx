@@ -1,9 +1,10 @@
 "use client"
 
 import React from "react"
-import { Check } from "lucide-react" // Import Check component
+import { Check } from "lucide-react"
 import Image from "next/image"
 import { Play } from "lucide-react"
+import { trackPixelEvent } from "@/lib/facebook-pixel"
 
 export function StepSales() {
   const ctaUrl = "https://pay.cakto.com.br/3fykqvm_757556"
@@ -93,6 +94,7 @@ export function StepSales() {
           href={ctaUrl}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackPixelEvent("InitiateCheckout")}
           className="block w-full py-4 rounded-full bg-[#2e7d32] text-[#fff] font-bold text-center text-base hover:bg-[#256b29] active:scale-[0.98] transition-all duration-200"
         >
           ACESSAR MEU PLANO AGORA!
@@ -183,6 +185,7 @@ export function StepSales() {
           href={ctaUrl}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackPixelEvent("InitiateCheckout")}
           className="block w-full py-4 rounded-full bg-[#2e7d32] text-[#fff] font-bold text-center text-base hover:bg-[#256b29] active:scale-[0.98] transition-all duration-200"
         >
           ACESSAR MEU PLANO AGORA!
@@ -208,6 +211,7 @@ export function StepSales() {
           href={ctaUrl}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackPixelEvent("InitiateCheckout")}
           className="block w-full py-4 rounded-full bg-[#2e7d32] text-[#fff] font-bold text-center text-base hover:bg-[#256b29] active:scale-[0.98] transition-all duration-200"
         >
           ACESSAR MEU PLANO AGORA!
@@ -252,6 +256,7 @@ function PricingCard({ ctaUrl }: { ctaUrl: string }) {
           href={ctaUrl}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackPixelEvent("InitiateCheckout")}
           className="mt-4 block w-full py-3.5 rounded-full bg-[#2e7d32] text-[#fff] font-bold text-sm hover:bg-[#256b29] active:scale-[0.98] transition-all duration-200"
         >
           ACESSAR O MEU PLANO AGORA!

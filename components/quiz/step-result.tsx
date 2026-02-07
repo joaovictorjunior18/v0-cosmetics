@@ -1,8 +1,10 @@
 "use client"
 
+import { useEffect } from "react"
 import type { QuizStep } from "@/lib/quiz-data"
 import { ArrowLeft } from "lucide-react"
 import Script from "next/script"
+import { trackPixelEvent } from "@/lib/facebook-pixel"
 
 interface StepResultProps {
   step: QuizStep
@@ -10,6 +12,10 @@ interface StepResultProps {
 }
 
 export function StepResult({ step, onBack }: StepResultProps) {
+  useEffect(() => {
+    trackPixelEvent("Lead")
+  }, [])
+
   return (
     <div className="flex flex-col flex-1 animate-in fade-in duration-500 bg-white overflow-y-auto">
       {/* Back button area */}
@@ -79,6 +85,7 @@ export function StepResult({ step, onBack }: StepResultProps) {
             href="https://pay.cakto.com.br/3fykqvm_757556"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackPixelEvent("InitiateCheckout")}
             className="block w-full bg-[#22C55E] hover:bg-green-700 text-white font-bold py-4 px-6 rounded-lg transition-colors text-base text-center"
           >
             QUERO MEU PLANO AGORA
@@ -100,6 +107,7 @@ export function StepResult({ step, onBack }: StepResultProps) {
             href="https://pay.cakto.com.br/3fykqvm_757556"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackPixelEvent("InitiateCheckout")}
             className="block w-full bg-[#22C55E] hover:bg-green-700 text-white font-bold py-4 px-6 rounded-lg transition-colors text-base text-center"
           >
             ACESSAR MEU PLANO AGORA!
@@ -166,6 +174,7 @@ export function StepResult({ step, onBack }: StepResultProps) {
             href="https://pay.cakto.com.br/3fykqvm_757556"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackPixelEvent("InitiateCheckout")}
             className="block w-full bg-[#22C55E] hover:bg-green-700 text-white font-bold py-4 px-6 rounded-lg transition-colors text-base text-center"
           >
             ACESSAR MEU PLANO AGORA!
@@ -187,6 +196,7 @@ export function StepResult({ step, onBack }: StepResultProps) {
             href="https://pay.cakto.com.br/3fykqvm_757556"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackPixelEvent("InitiateCheckout")}
             className="block w-full bg-[#22C55E] hover:bg-green-700 text-white font-bold py-4 px-6 rounded-lg transition-colors text-base text-center"
           >
             ACESSAR MEU PLANO AGORA!
