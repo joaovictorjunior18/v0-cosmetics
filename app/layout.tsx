@@ -1,6 +1,7 @@
-import React from "react"
+import React, { Suspense } from "react"
 import type { Metadata, Viewport } from 'next'
 import { Inter, Playfair_Display } from 'next/font/google'
+import { FacebookPixel } from '@/components/facebook-pixel'
 
 import './globals.css'
 
@@ -27,7 +28,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${_inter.variable} ${_playfair.variable} font-sans antialiased`}>{children}</body>
+      <body className={`${_inter.variable} ${_playfair.variable} font-sans antialiased`}>
+        <Suspense fallback={null}>
+          <FacebookPixel />
+        </Suspense>
+        {children}
+      </body>
     </html>
   )
 }
