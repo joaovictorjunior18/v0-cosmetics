@@ -59,9 +59,14 @@ export function StepResult({ step, onBack }: StepResultProps) {
 
         {/* CTA Button */}
         <div className="w-full px-4 mb-4">
-          <button className="w-full bg-[#22C55E] hover:bg-green-700 text-white font-bold py-4 px-6 rounded-lg transition-colors text-base">
+          <a
+            href="https://pay.cakto.com.br/3fykqvm_757556"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full bg-[#22C55E] hover:bg-green-700 text-white font-bold py-4 px-6 rounded-lg transition-colors text-base text-center"
+          >
             QUERO MEU PLANO AGORA
-          </button>
+          </a>
         </div>
 
         {/* Image 03 - Julia testimonial */}
@@ -75,9 +80,14 @@ export function StepResult({ step, onBack }: StepResultProps) {
 
         {/* CTA button after image 03 */}
         <div className="w-full px-4 mb-4">
-          <button className="w-full bg-[#22C55E] hover:bg-green-700 text-white font-bold py-4 px-6 rounded-lg transition-colors text-base">
+          <a
+            href="https://pay.cakto.com.br/3fykqvm_757556"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full bg-[#22C55E] hover:bg-green-700 text-white font-bold py-4 px-6 rounded-lg transition-colors text-base text-center"
+          >
             ACESSAR MEU PLANO AGORA!
-          </button>
+          </a>
         </div>
 
         {/* Image 04 - Andressa testimonial */}
@@ -136,9 +146,14 @@ export function StepResult({ step, onBack }: StepResultProps) {
 
         {/* CTA button after image 09 */}
         <div className="w-full px-4 mb-4">
-          <button className="w-full bg-[#22C55E] hover:bg-green-700 text-white font-bold py-4 px-6 rounded-lg transition-colors text-base">
+          <a
+            href="https://pay.cakto.com.br/3fykqvm_757556"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full bg-[#22C55E] hover:bg-green-700 text-white font-bold py-4 px-6 rounded-lg transition-colors text-base text-center"
+          >
             ACESSAR MEU PLANO AGORA!
-          </button>
+          </a>
         </div>
 
         {/* Image 10 - Satisfacao garantida */}
@@ -152,9 +167,14 @@ export function StepResult({ step, onBack }: StepResultProps) {
 
         {/* Final CTA button after image 10 */}
         <div className="w-full px-4 mb-6">
-          <button className="w-full bg-[#22C55E] hover:bg-green-700 text-white font-bold py-4 px-6 rounded-lg transition-colors text-base">
+          <a
+            href="https://pay.cakto.com.br/3fykqvm_757556"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full bg-[#22C55E] hover:bg-green-700 text-white font-bold py-4 px-6 rounded-lg transition-colors text-base text-center"
+          >
             ACESSAR MEU PLANO AGORA!
-          </button>
+          </a>
         </div>
       </div>
     </div>
