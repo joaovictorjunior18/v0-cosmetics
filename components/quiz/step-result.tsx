@@ -2,6 +2,7 @@
 
 import type { QuizStep } from "@/lib/quiz-data"
 import { ArrowLeft } from "lucide-react"
+import Script from "next/script"
 
 interface StepResultProps {
   step: QuizStep
@@ -38,13 +39,19 @@ export function StepResult({ step, onBack }: StepResultProps) {
           />
         </div>
 
-        {/* VSL Video Placeholder */}
+        {/* VSL Video */}
         <div className="w-full px-4 mb-6">
-          <div className="w-full aspect-video bg-black rounded-lg flex items-center justify-center overflow-hidden">
-            <div className="text-center text-white">
-              <p className="font-semibold">VÍDEO VSL</p>
-            </div>
+          <div style={{ padding: "176.47% 0 0 0", position: "relative" }}>
+            <iframe
+              src="https://player.vimeo.com/video/1162735381?badge=0&autopause=0&player_id=0&app_id=58479"
+              frameBorder="0"
+              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
+              title="Cosmeticos"
+            />
           </div>
+          <Script src="https://player.vimeo.com/api/player.js" strategy="lazyOnload" />
         </div>
 
         {/* Imagem 02 - Offer Section */}
@@ -59,9 +66,14 @@ export function StepResult({ step, onBack }: StepResultProps) {
 
         {/* CTA Button */}
         <div className="w-full px-4 mb-4">
-          <button className="w-full bg-[#22C55E] hover:bg-green-700 text-white font-bold py-4 px-6 rounded-lg transition-colors text-base">
+          <a
+            href="https://pay.cakto.com.br/3fykqvm_757556"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full bg-[#22C55E] hover:bg-green-700 text-white font-bold py-4 px-6 rounded-lg transition-colors text-base text-center"
+          >
             QUERO MEU PLANO AGORA
-          </button>
+          </a>
         </div>
 
         {/* Image 03 - Julia testimonial */}
@@ -75,9 +87,14 @@ export function StepResult({ step, onBack }: StepResultProps) {
 
         {/* CTA button after image 03 */}
         <div className="w-full px-4 mb-4">
-          <button className="w-full bg-[#22C55E] hover:bg-green-700 text-white font-bold py-4 px-6 rounded-lg transition-colors text-base">
+          <a
+            href="https://pay.cakto.com.br/3fykqvm_757556"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full bg-[#22C55E] hover:bg-green-700 text-white font-bold py-4 px-6 rounded-lg transition-colors text-base text-center"
+          >
             ACESSAR MEU PLANO AGORA!
-          </button>
+          </a>
         </div>
 
         {/* Image 04 - Andressa testimonial */}
@@ -136,9 +153,14 @@ export function StepResult({ step, onBack }: StepResultProps) {
 
         {/* CTA button after image 09 */}
         <div className="w-full px-4 mb-4">
-          <button className="w-full bg-[#22C55E] hover:bg-green-700 text-white font-bold py-4 px-6 rounded-lg transition-colors text-base">
+          <a
+            href="https://pay.cakto.com.br/3fykqvm_757556"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full bg-[#22C55E] hover:bg-green-700 text-white font-bold py-4 px-6 rounded-lg transition-colors text-base text-center"
+          >
             ACESSAR MEU PLANO AGORA!
-          </button>
+          </a>
         </div>
 
         {/* Image 10 - Satisfacao garantida */}
@@ -152,9 +174,14 @@ export function StepResult({ step, onBack }: StepResultProps) {
 
         {/* Final CTA button after image 10 */}
         <div className="w-full px-4 mb-6">
-          <button className="w-full bg-[#22C55E] hover:bg-green-700 text-white font-bold py-4 px-6 rounded-lg transition-colors text-base">
+          <a
+            href="https://pay.cakto.com.br/3fykqvm_757556"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full bg-[#22C55E] hover:bg-green-700 text-white font-bold py-4 px-6 rounded-lg transition-colors text-base text-center"
+          >
             ACESSAR MEU PLANO AGORA!
-          </button>
+          </a>
         </div>
       </div>
     </div>
